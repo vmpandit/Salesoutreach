@@ -1,0 +1,3131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Outreach Engine - Persona-Driven Campaign Platform</title>
+    <style>
+        :root {
+            /* Modern Elegant Color System - 2026 */
+            --bg-body: #050814;
+            --bg-glass: rgba(15, 24, 48, 0.85);
+            --bg-elevated: rgba(20, 30, 60, 0.75);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-strong: rgba(139, 92, 246, 0.3);
+            
+            /* Accent Colors */
+            --accent-primary: #8B5CF6;
+            --accent-primary-hover: #7C3AED;
+            --accent-primary-active: #6D28D9;
+            --accent-soft: rgba(139, 92, 246, 0.18);
+            --accent-success: #22C55E;
+            --accent-warning: #F59E0B;
+            --accent-danger: #F97373;
+            
+            /* Text Colors */
+            --text-primary: #F9FAFB;
+            --text-secondary: #9CA3AF;
+            --text-muted: #6B7280;
+            
+            /* Shadows */
+            --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
+            --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.7);
+            --shadow-accent: 0 12px 36px rgba(139, 92, 246, 0.45);
+            
+            /* Liquid Glass Effects */
+            --glass-blur: blur(28px);
+            
+            /* Typography */
+            --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            --font-mono: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            
+            /* Spacing */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            
+            /* Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 350ms cubic-bezier(0.4, 0, 0.1, 1);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --glass-bg: rgba(28, 28, 30, 0.8);
+                --glass-border: rgba(255, 255, 255, 0.15);
+                --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+                --glass-hover-bg: rgba(44, 44, 46, 0.9);
+                --gray-50: #1C1C1E;
+                --gray-100: #2C2C2E;
+                --gray-200: #3A3A3C;
+                --gray-300: #48484A;
+                --gray-800: #F5F5F7;
+                --gray-900: #FFFFFF;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-system);
+            background: radial-gradient(circle at top, #0b1020 0%, #050814 45%, #02030a 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+        
+        /* Liquid Glass Container */
+        .glass-container {
+            max-width: 1400px;
+            margin: var(--space-lg) auto;
+            padding: 0 var(--space-lg);
+        }
+        
+        /* Liquid Glass Card */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: var(--glass-blur) saturate(150%);
+            -webkit-backdrop-filter: var(--glass-blur) saturate(150%);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-soft);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-lg);
+            transition: all var(--transition-normal);
+        }
+        
+        .glass-card:hover {
+            background: var(--bg-elevated);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-strong);
+        }
+        
+        /* Header */
+        .app-header {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+            padding: var(--space-xl) 0;
+        }
+        
+        .app-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--accent-primary), #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .app-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+        
+        /* Stage Navigation */
+        .stage-nav {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+            overflow-x: auto;
+            padding: var(--space-sm);
+        }
+        
+        .stage-btn {
+            flex: 1;
+            min-width: 160px;
+            padding: var(--space-md) var(--space-lg);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-subtle);
+            border-radius: 999px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .stage-btn:hover {
+            background: var(--bg-elevated);
+            transform: translateY(-1px);
+            border-color: var(--border-strong);
+        }
+        
+        .stage-btn.active {
+            background: linear-gradient(135deg, var(--accent-primary), #7C3AED);
+            color: white;
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-accent);
+        }
+        
+        .stage-btn.completed {
+            border-color: var(--accent-success);
+            color: var(--accent-success);
+        }
+        
+        .stage-icon {
+            font-size: 24px;
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: var(--space-md);
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            font-family: var(--font-system);
+            color: var(--text-primary);
+            transition: all var(--transition-fast);
+        }
+        
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 4px var(--accent-soft);
+            background: rgba(15, 23, 42, 0.8);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: var(--space-md) var(--space-xl);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), #7C3AED);
+            color: white;
+            box-shadow: var(--shadow-accent);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--accent-primary-hover), var(--accent-primary));
+            transform: translateY(-1px);
+            box-shadow: 0 18px 45px rgba(139, 92, 246, 0.6);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+            background: linear-gradient(135deg, var(--accent-primary-active), var(--accent-primary-hover));
+        }
+        
+        .btn-secondary {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: var(--glass-blur);
+            color: var(--accent-primary);
+            border: 1px solid var(--border-strong);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--bg-elevated);
+            border-color: var(--accent-primary);
+        }
+        
+        .btn-success {
+            background: var(--accent-success);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: var(--accent-danger);
+            color: white;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Stage Content */
+        .stage-content {
+            display: none;
+        }
+        
+        .stage-content.active {
+            display: block;
+            animation: fadeIn var(--transition-smooth);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+        }
+        
+        /* Persona Card */
+        .persona-card {
+            background: var(--bg-elevated);
+            backdrop-filter: var(--glass-blur);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            border: 1px solid var(--border-subtle);
+            transition: all var(--transition-normal);
+        }
+        
+        .persona-card:hover {
+            border-color: var(--border-strong);
+            transform: translateY(-2px);
+        }
+        
+        .persona-card h3 {
+            font-size: 20px;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+        
+        .persona-detail {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-sm);
+        }
+        
+        /* Prospect List */
+        .prospect-item {
+            background: var(--bg-elevated);
+            backdrop-filter: var(--glass-blur);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-subtle);
+            transition: all var(--transition-fast);
+        }
+        
+        .prospect-item:hover {
+            border-color: var(--border-strong);
+        }
+        
+        .prospect-info h4 {
+            font-size: 16px;
+            margin-bottom: var(--space-xs);
+            color: var(--text-primary);
+        }
+        
+        .prospect-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        /* Campaign Calendar */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        
+        .calendar-day {
+            background: var(--bg-elevated);
+            backdrop-filter: var(--glass-blur);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            border: 1px solid var(--border-subtle);
+            transition: all var(--transition-fast);
+        }
+        
+        .calendar-day:hover {
+            border-color: var(--border-strong);
+        }
+        
+        .calendar-day h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+        
+        .touchpoint {
+            font-size: 12px;
+            padding: var(--space-xs) var(--space-sm);
+            background: var(--accent-primary);
+            color: white;
+            border-radius: 999px;
+            margin-bottom: var(--space-xs);
+            display: inline-block;
+        }
+        
+        .touchpoint.email {
+            background: var(--accent-primary);
+        }
+        
+        .touchpoint.linkedin {
+            background: #0A66C2;
+        }
+        
+        .touchpoint.phone {
+            background: var(--accent-success);
+        }
+        
+        /* Content Preview */
+        .content-preview {
+            background: var(--bg-elevated);
+            backdrop-filter: var(--glass-blur);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            border: 1px solid var(--border-subtle);
+        }
+        
+        .content-preview h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+        }
+        
+        .content-preview pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: var(--space-md);
+            border-radius: var(--radius-sm);
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+        }
+        
+        .content-actions {
+            display: flex;
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+        
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: var(--space-xl);
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-subtle);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto var(--space-md);
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Alert */
+        .alert {
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-lg);
+            border-left: 4px solid;
+        }
+        
+        .alert-info {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+        
+        .alert-success {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: var(--accent-success);
+            color: var(--accent-success);
+        }
+        
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: var(--accent-warning);
+            color: var(--accent-warning);
+        }
+        
+        .alert-error {
+            background: rgba(249, 115, 115, 0.1);
+            border-color: var(--accent-danger);
+            color: var(--accent-danger);
+        }
+        
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-success {
+            background: var(--accent-success);
+            color: white;
+        }
+        
+        .badge-pending {
+            background: var(--accent-warning);
+            color: white;
+        }
+        
+        /* Action Bar */
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-subtle);
+        }
+        
+        /* Prospect Search & Discovery */
+        .prospect-search-container {
+            background: var(--bg-elevated);
+            backdrop-filter: var(--glass-blur);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            border: 1px solid var(--border-subtle);
+        }
+        
+        .prospect-suggestion {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            border: 1px solid var(--border-subtle);
+            transition: all var(--transition-fast);
+        }
+        
+        .prospect-suggestion:hover {
+            border-color: var(--border-strong);
+            background: var(--bg-elevated);
+        }
+        
+        .prospect-suggestion h4 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .prospect-suggestion p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .fit-score {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: var(--space-sm);
+        }
+        
+        .fit-score.high {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--accent-success);
+            border: 1px solid var(--accent-success);
+        }
+        
+        .fit-score.medium {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--accent-warning);
+            border: 1px solid var(--accent-warning);
+        }
+        
+        .fit-score.low {
+            background: rgba(156, 163, 175, 0.2);
+            color: var(--text-muted);
+            border: 1px solid var(--text-muted);
+        }
+        
+        /* AI Report Modal */
+        .report-modal {
+            position: fixed;
+            top: 0;
+            right: -600px;
+            width: 600px;
+            max-width: 90vw;
+            height: 100vh;
+            background: var(--bg-glass);
+            backdrop-filter: var(--glass-blur) saturate(150%);
+            box-shadow: -8px 0 32px rgba(0, 0, 0, 0.8);
+            transition: right var(--transition-smooth);
+            z-index: 1000;
+            overflow-y: auto;
+            border-left: 1px solid var(--border-subtle);
+        }
+        
+        .report-modal.active {
+            right: 0;
+        }
+        
+        .report-modal-header {
+            padding: var(--space-xl);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: var(--bg-glass);
+            backdrop-filter: var(--glass-blur);
+            z-index: 10;
+        }
+        
+        .report-modal-content {
+            padding: var(--space-xl);
+        }
+        
+        .report-section {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .report-section h3 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            font-size: 18px;
+        }
+        
+        .report-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .report-section li {
+            padding: var(--space-sm) 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .report-section li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Contact Cards */
+        .contact-card {
+            background: var(--bg-elevated);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .contact-card:hover {
+            border-color: var(--border-strong);
+        }
+        
+        .contact-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), #A78BFA);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h4 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+            font-size: 16px;
+        }
+        
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .contact-actions {
+            display: flex;
+            gap: var(--space-sm);
+        }
+        
+        .btn-icon {
+            padding: var(--space-sm);
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            color: var(--text-secondary);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-icon:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+        
+        .btn-icon.selected {
+            background: var(--accent-soft);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .app-header h1 {
+                font-size: 32px;
+            }
+            
+            .stage-nav {
+                flex-direction: column;
+            }
+            
+            .stage-btn {
+                min-width: 100%;
+            }
+            
+            .action-bar {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+            
+            .action-bar > * {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-container">
+        <div class="app-header">
+            <h1>🚀 Sales Outreach Engine</h1>
+            <p>Persona-Driven Campaign Platform with AI-Powered Targeting</p>
+        </div>
+
+        <!-- Stage Navigation -->
+        <div class="stage-nav">
+            <button class="stage-btn active" data-stage="1">
+                <span class="stage-icon">📋</span>
+                <span>Company Profile</span>
+            </button>
+            <button class="stage-btn" data-stage="2">
+                <span class="stage-icon">👤</span>
+                <span>Build Personas</span>
+            </button>
+            <button class="stage-btn" data-stage="3">
+                <span class="stage-icon">🎯</span>
+                <span>Find Prospects</span>
+            </button>
+            <button class="stage-btn" data-stage="4">
+                <span class="stage-icon">📅</span>
+                <span>Campaign Strategy</span>
+            </button>
+            <button class="stage-btn" data-stage="5">
+                <span class="stage-icon">✍️</span>
+                <span>Generate Content</span>
+            </button>
+            <button class="stage-btn" data-stage="6">
+                <span class="stage-icon">🚀</span>
+                <span>Execute Campaign</span>
+            </button>
+        </div>
+
+        <!-- Stage 1: Company Profile -->
+        <div class="stage-content active" data-stage="1">
+            <div class="glass-card">
+                <h2 style="margin-bottom: var(--space-lg); font-size: 28px;">Company Profile</h2>
+                
+                <div class="alert alert-info">
+                    <strong>Step 1:</strong> Tell us about your company. This information helps us understand your ideal customers and craft targeted campaigns.
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Company Name</label>
+                    <input type="text" class="form-input" id="companyName" placeholder="Acme Inc.">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Website URL</label>
+                    <input type="url" class="form-input" id="companyWebsite" placeholder="https://acme.com">
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Industry</label>
+                        <select class="form-select" id="companyIndustry">
+                            <option value="">Select Industry</option>
+                            <option value="saas">SaaS / Software</option>
+                            <option value="consulting">Consulting</option>
+                            <option value="agency">Marketing Agency</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="finance">Financial Services</option>
+                            <option value="education">Education</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>                <div class="form-group">
+                    <label class="form-label">Company Size</label>
+                    <select class="form-select" id="companySize">
+                        <option value="">Select Size</option>
+                        <option value="1-10">1-10 employees</option>
+                        <option value="11-50">11-50 employees</option>
+                        <option value="51-200">51-200 employees</option>
+                        <option value="201-500">201-500 employees</option>
+                        <option value="501+">501+ employees</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Company Maturity Stage</label>
+                    <select class="form-select" id="companyMaturity">
+                        <option value="">Select Maturity Stage</option>
+                        <option value="pre-seed">Pre-Seed / Idea Stage</option>
+                        <option value="seed">Seed Stage Startup</option>
+                        <option value="early">Early Stage (Series A-B)</option>
+                        <option value="growth">Growth Stage (Series C+)</option>
+                        <option value="established">Established Company</option>
+                        <option value="enterprise">Enterprise / Fortune 500</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Monthly Sales Outreach Budget (USD)</label>
+                    <select class="form-select" id="salesBudget">
+                        <option value="">Select Budget Range</option>
+                        <option value="0-500">$0 - $500 (Bootstrap / DIY)</option>
+                        <option value="500-2000">$500 - $2,000 (Small Team)</option>
+                        <option value="2000-5000">$2,000 - $5,000 (Growing Team)</option>
+                        <option value="5000-10000">$5,000 - $10,000 (Scaling)</option>
+                        <option value="10000-25000">$10,000 - $25,000 (Established)</option>
+                        <option value="25000+">$25,000+ (Enterprise)</option>
+                    </select>
+                </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Products / Services (one per line)</label>
+                    <textarea class="form-textarea" id="companyProducts" placeholder="List your main products or services...
+Example:
+- Cloud-based CRM software
+- Sales automation tools
+- Analytics dashboards"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Value Proposition</label>
+                    <textarea class="form-textarea" id="companyValue" placeholder="What unique value do you provide to customers?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Gemini API Key (Free Tier)</label>
+                    <input type="password" class="form-input" id="geminiApiKey" placeholder="Get your free key from aistudio.google.com">
+                    <p style="font-size: 12px; color: var(--gray-600); margin-top: var(--space-xs);">
+                        Get your free API key: <a href="https://aistudio.google.com/apikey" target="_blank" style="color: var(--blue);">https://aistudio.google.com/apikey</a>
+                    </p>
+                </div>
+
+                <div class="action-bar">
+                    <div></div>
+                    <button class="btn btn-primary" onclick="saveCompanyProfile()">
+                        Save & Continue →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 2: Build Personas -->
+        <div class="stage-content" data-stage="2">
+            <div class="glass-card">
+                <h2 style="margin-bottom: var(--space-lg); font-size: 28px;">Build Buyer Personas</h2>
+                
+                <div class="alert alert-info">
+                    <strong>AI-Powered Research:</strong> We'll analyze your company profile and generate ideal buyer personas using Gemini AI.
+                </div>
+
+                <div id="personaGeneration" style="display: none;">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Analyzing your company profile and generating buyer personas...</p>
+                    </div>
+                </div>
+
+                <div id="personaResults">
+                    <button class="btn btn-primary" onclick="generatePersonas()">
+                        🤖 Generate Personas with AI
+                    </button>
+                </div>
+
+                <div id="personaList"></div>
+
+                <div class="action-bar">
+                    <button class="btn btn-secondary" onclick="goToStage(1)">
+                        ← Back
+                    </button>
+                    <button class="btn btn-primary" onclick="goToStage(3)" id="continueToProspects" disabled>
+                        Continue to Prospects →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 3: Find Prospects -->
+        <div class="stage-content" data-stage="3">
+            <div class="glass-card">
+                <h2 style="margin-bottom: var(--space-lg); font-size: 28px;">Find Target Prospects</h2>
+                
+                <div class="alert alert-info">
+                    <strong>AI-Powered Discovery:</strong> Let AI search for and suggest prospects, then click to view detailed reports and find key contacts.
+                </div>
+
+                <div class="prospect-search-container">
+                    <h3 style="margin-bottom: var(--space-md); color: var(--text-primary);">AI Prospect Search</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Select Persona for Search</label>
+                        <select class="form-select" id="searchPersona">
+                            <option value="">Choose a persona...</option>
+                        </select>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Industry Focus</label>
+                            <input type="text" class="form-input" id="searchIndustry" placeholder="e.g., SaaS, Healthcare">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Company Size</label>
+                            <select class="form-select" id="searchCompanySize">
+                                <option value="">Any Size</option>
+                                <option value="1-50">1-50 employees</option>
+                                <option value="51-200">51-200 employees</option>
+                                <option value="201-1000">201-1000 employees</option>
+                                <option value="1001+">1001+ employees</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Geographic Focus</label>
+                        <input type="text" class="form-input" id="searchGeo" placeholder="e.g., United States, Chicago area">
+                    </div>
+
+                    <button class="btn btn-primary" onclick="searchProspects()">
+                        🔍 Search for Prospects with AI
+                    </button>
+
+                    <div id="prospectSuggestions" style="margin-top: var(--space-lg);"></div>
+                </div>
+
+                <div class="form-group" style="margin-top: var(--space-2xl);">
+                    <label class="form-label">Or Add Manually - Select Persona</label>
+                    <select class="form-select" id="prospectPersona">
+                        <option value="">Choose a persona...</option>
+                    </select>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.6); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-lg);">
+                    <h3 style="margin-bottom: var(--space-md);">Add Prospect</h3>
+                    
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-input" id="prospectName" placeholder="John Smith">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Job Title</label>
+                            <input type="text" class="form-input" id="prospectTitle" placeholder="VP of Sales">
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Company</label>
+                            <input type="text" class="form-input" id="prospectCompany" placeholder="Acme Corp">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" id="prospectEmail" placeholder="john@acme.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">LinkedIn URL</label>
+                        <input type="url" class="form-input" id="prospectLinkedIn" placeholder="https://linkedin.com/in/johnsmith">
+                    </div>
+
+                    <button class="btn btn-primary" onclick="addProspect()">
+                        ➕ Add Prospect
+                    </button>
+                </div>
+
+                <div id="prospectList">
+                    <h3 style="margin-bottom: var(--space-md);">Target Prospects (<span id="prospectCount">0</span>)</h3>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-secondary" onclick="goToStage(2)">
+                        ← Back
+                    </button>
+                    <button class="btn btn-primary" onclick="goToStage(4)" id="continueToCampaign" disabled>
+                        Continue to Campaign →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 4: Campaign Strategy -->
+        <div class="stage-content" data-stage="4">
+            <div class="glass-card">
+                <h2 style="margin-bottom: var(--space-lg); font-size: 28px;">Campaign Strategy & Calendar</h2>
+                
+                <div class="alert alert-info">
+                    <strong>Multi-Channel Cadence:</strong> We'll create a 21-day outreach sequence using email, LinkedIn, and phone touchpoints based on best practices.
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Campaign Duration</label>
+                    <select class="form-select" id="campaignDuration">
+                        <option value="10">10 Days (Fast Track)</option>
+                        <option value="21" selected>21 Days (Recommended)</option>
+                        <option value="30">30 Days (Extended)</option>
+                    </select>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Email Touchpoints</label>
+                        <select class="form-select" id="emailTouchpoints">
+                            <option value="3">3 Emails</option>
+                            <option value="5" selected>5 Emails</option>
+                            <option value="7">7 Emails</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">LinkedIn Touchpoints</label>
+                        <select class="form-select" id="linkedinTouchpoints">
+                            <option value="3">3 Interactions</option>
+                            <option value="5" selected>5 Interactions</option>
+                            <option value="7">7 Interactions</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="generateCampaignCalendar()">
+                    📅 Generate Campaign Calendar
+                </button>
+
+                <div id="campaignCalendar"></div>
+
+                <div class="action-bar">
+                    <button class="btn btn-secondary" onclick="goToStage(3)">
+                        ← Back
+                    </button>
+                    <button class="btn btn-primary" onclick="goToStage(5)" id="continueToContent" disabled>
+                        Continue to Content →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 5: Generate Content -->
+        <div class="stage-content" data-stage="5">
+            <div class="glass-card">
+                <h2 style="margin-bottom: var(--space-lg); font-size: 28px;">Generate Outreach Content</h2>
+                
+                <div class="alert alert-info">
+                    <strong>AI-Generated Content:</strong> Review and approve each outreach message. You can regenerate or edit as needed.
+                </div>
+
+                <div id="contentGeneration" style="display: none;">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Generating personalized outreach content using AI...</p>
+                    </div>
+                </div>
+
+                <div id="contentList">
+                    <button class="btn btn-primary" onclick="generateAllContent()">
+                        ✍️ Generate All Content
+                    </button>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-secondary" onclick="goToStage(4)">
+                        ← Back
+                    </button>
+                    <button class="btn btn-primary" onclick="goToStage(6)" id="continueToExecute" disabled>
+                        Continue to Execution →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 6: Execute Campaign -->
+        <div class="stage-content" data-stage="6">
+            <div class="glass-card">
+                <h2 style="margin-bottom: var(--space-lg); font-size: 28px;">Execute Campaign</h2>
+                
+                <div class="alert alert-success">
+                    <strong>Ready to Launch!</strong> Review your campaign summary and execute when ready.
+                </div>
+
+                <div id="executionSummary"></div>
+
+                <div style="background: rgba(255, 255, 255, 0.6); padding: var(--space-xl); border-radius: var(--radius-md); text-align: center; margin-top: var(--space-xl);">
+                    <h3 style="margin-bottom: var(--space-md);">Campaign Execution</h3>
+                    <p style="color: var(--gray-600); margin-bottom: var(--space-lg);">
+                        In a production app, this would automatically send emails via SMTP/SendGrid and post LinkedIn messages via LinkedIn API at scheduled times.
+                    </p>
+                    <button class="btn btn-success" onclick="executeCampaign()" style="font-size: 18px; padding: var(--space-lg) var(--space-2xl);">
+                        🚀 Execute Campaign
+                    </button>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-secondary" onclick="goToStage(5)">
+                        ← Back
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetApp()">
+                        🔄 Start New Campaign
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Database using localStorage (GitHub Pages compatible)
+        const DB_KEY = 'sales_outreach_engine_v1';
+        
+        function getDB() {
+            const data = localStorage.getItem(DB_KEY);
+            return data ? JSON.parse(data) : {
+                company: {},
+                personas: [],
+                prospects: [],
+                campaign: {},
+                content: [],
+                stage: 1
+            };
+        }
+        
+        function saveDB(db) {
+            localStorage.setItem(DB_KEY, JSON.stringify(db));
+        }
+        
+        // Navigation
+        function goToStage(stageNum) {
+            const db = getDB();
+            db.stage = stageNum;
+            saveDB(db);
+            
+            // Update stage buttons
+            document.querySelectorAll('.stage-btn').forEach(btn => {
+                const btnStage = parseInt(btn.dataset.stage);
+                btn.classList.remove('active', 'completed');
+                if (btnStage === stageNum) {
+                    btn.classList.add('active');
+                } else if (btnStage < stageNum) {
+                    btn.classList.add('completed');
+                }
+            });
+            
+            // Show/hide stage content
+            document.querySelectorAll('.stage-content').forEach(content => {
+                content.classList.remove('active');
+                if (parseInt(content.dataset.stage) === stageNum) {
+                    content.classList.add('active');
+                }
+            });
+            
+            // Load stage data
+            loadStageData(stageNum);
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function loadStageData(stageNum) {
+            const db = getDB();
+            
+            switch(stageNum) {
+                case 1:
+                    if (db.company.name) {
+                        document.getElementById('companyName').value = db.company.name || '';
+                        document.getElementById('companyWebsite').value = db.company.website || '';
+                        document.getElementById('companyIndustry').value = db.company.industry || '';
+                        document.getElementById('companySize').value = db.company.size || '';
+                        document.getElementById('companyMaturity').value = db.company.maturity || '';
+                        document.getElementById('salesBudget').value = db.company.budget || '';
+                        document.getElementById('companyProducts').value = db.company.products || '';
+                        document.getElementById('companyValue').value = db.company.value || '';
+                        document.getElementById('geminiApiKey').value = db.company.apiKey || '';
+                    }
+                    break;
+                case 2:
+                    displayPersonas();
+                    break;
+                case 3:
+                    loadProspectPersonas();
+                    displayProspects();
+                    break;
+                case 4:
+                    if (db.campaign.calendar) {
+                        displayCampaignCalendar();
+                    }
+                    break;
+                case 5:
+                    if (db.content.length > 0) {
+                        displayContent();
+                    }
+                    break;
+                case 6:
+                    displayExecutionSummary();
+                    break;
+            }
+        }
+        
+        // Stage 1: Company Profile
+        function saveCompanyProfile() {
+            const name = document.getElementById('companyName').value.trim();
+            const website = document.getElementById('companyWebsite').value.trim();
+            const industry = document.getElementById('companyIndustry').value;
+            const size = document.getElementById('companySize').value;
+            const maturity = document.getElementById('companyMaturity').value;
+            const budget = document.getElementById('salesBudget').value;
+            const products = document.getElementById('companyProducts').value.trim();
+            const value = document.getElementById('companyValue').value.trim();
+            const apiKey = document.getElementById('geminiApiKey').value.trim();
+            
+            if (!name || !website || !industry || !size || !maturity || !budget || !products || !value || !apiKey) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const db = getDB();
+            db.company = { name, website, industry, size, maturity, budget, products, value, apiKey };
+            saveDB(db);
+            
+            goToStage(2);
+        }
+        
+        // Helper Functions for AI Guidance
+        function getBudgetGuidance(budget, maturity) {
+            const guidance = {
+                '0-500': `BOOTSTRAP CONSTRAINTS (${maturity}):
+- Target: Small businesses (1-50 employees) with DIY mindset
+- Decision cycle: 1-2 weeks max (no budget for long sales cycles)
+- Focus: Self-service, free trials, low-touch sales
+- Avoid: Enterprise accounts, complex procurement, multi-stakeholder deals
+- Red flags: "Need to check with board", "RFP process", "Legal review required"`,
+                
+                '500-2000': `SMALL TEAM BUDGET (${maturity}):
+- Target: SMBs (10-200 employees), emerging mid-market
+- Decision makers: Directors, VPs (not C-suite at Fortune 500)
+- Sales cycle: 2-4 weeks realistic
+- Focus: Quick wins, clear ROI, minimal implementation
+- Avoid: Multi-year contracts requiring CFO approval
+- Sweet spot: Companies growing fast, need solutions NOW`,
+                
+                '2000-5000': `GROWING TEAM BUDGET (${maturity}):
+- Target: Mid-market (50-500 employees), growth-stage startups
+- Decision makers: VPs, sometimes SVPs at smaller companies
+- Sales cycle: 1-2 months acceptable
+- Can pursue: Moderate deal sizes ($10K-$50K annual)
+- Focus: Scalable solutions, documented ROI
+- Avoid: Enterprise IT procurement, 6+ month cycles`,
+                
+                '5000-10000': `SCALING BUDGET (${maturity}):
+- Target: Upper mid-market (200-2000 employees), Series B+ startups
+- Decision makers: SVPs, CXOs at mid-market firms
+- Sales cycle: 2-3 months manageable
+- Can pursue: Significant deals ($50K-$200K annual)
+- Focus: Platform sales, strategic partnerships
+- Avoid: Fortune 500 unless clear champion`,
+                
+                '10000-25000': `ESTABLISHED BUDGET (${maturity}):
+- Target: Large enterprises (500-5000 employees), late-stage companies
+- Decision makers: C-suite, enterprise buying committees
+- Sales cycle: 3-6 months feasible
+- Can pursue: Major accounts ($200K-$1M+ annual)
+- Focus: Enterprise solutions, multi-year contracts
+- Resources: Multiple AEs, SEs, dedicated SDR team`,
+                
+                '25000+': `ENTERPRISE BUDGET (${maturity}):
+- Target: Fortune 1000, global enterprises, complex organizations
+- Decision makers: C-suite, procurement, legal, IT, security
+- Sales cycle: 6-12+ months expected
+- Can pursue: Whale accounts ($1M+ annual)
+- Focus: Strategic partnerships, platform replacements
+- Resources: Full sales org, channel partners, solutions architects`
+            };
+            
+            return guidance[budget] || 'No specific budget guidance available.';
+        }
+        
+        function getContactTargetingGuidance(maturity, budget) {
+            if (budget === '0-500' || budget === '500-2000') {
+                return `ACCESSIBLE CONTACT STRATEGY:
+- Target: Individual contributors, managers, directors
+- Avoid: VPs and C-suite (you can't reach them effectively yet)
+- Why: Early-stage companies get ignored by gatekeepers
+- Sweet spot: "Doers" with budget authority ($5K-$25K)
+- Example: Sales Ops Manager, Marketing Director, Revenue Analyst
+- Red flag: "I need to run this by my VP" = deal will stall`;
+            } else if (budget === '2000-5000' || budget === '5000-10000') {
+                return `MID-LEVEL TARGETING:
+- Target: Directors, VPs, small company SVPs
+- Can reach: Department heads with direct budget control
+- Avoid: Fortune 500 C-suite (too hard to reach)
+- Sweet spot: VPs at 100-500 person companies
+- Example: VP Sales, Director of Revenue Ops, Head of Growth
+- Strategy: Multi-threading (VP + Director for air cover)`;
+            } else {
+                return `EXECUTIVE TARGETING:
+- Target: VPs, SVPs, CXOs
+- Can reach: C-suite at mid-market, VPs at enterprise
+- Strategy: Top-down + champion (executive sponsor + end user)
+- Sweet spot: Recently promoted executives (initiative to prove value)
+- Example: CRO, VP Enterprise Sales, SVP Revenue Operations
+- Multi-threading: Exec sponsor + 2-3 end users + procurement`;
+            }
+        }
+        
+        function getEmailToneGuidance(maturity) {
+            const tones = {
+                'pre-seed': 'Casual, founder-to-founder, scrappy energy. Sound like a human who genuinely wants to help.',
+                'seed': 'Friendly but professional. Show credibility without over-promising.',
+                'early': 'Consultative, data-driven. Reference traction and customers.',
+                'growth': 'Strategic partner tone. Emphasize scale, proven results.',
+                'established': 'Enterprise professional. Leverage brand, case studies, security.',
+                'enterprise': 'C-suite language. ROI-focused, risk mitigation, strategic alignment.'
+            };
+            
+            return `TONE GUIDANCE (${maturity}): ${tones[maturity] || 'Professional and value-focused.'}`;
+        }
+        
+        function getCaseStudyGuidance(maturity) {
+            if (maturity === 'pre-seed' || maturity === 'seed') {
+                return `EARLY-STAGE CASE STUDY STRATEGY:
+- Use: Beta customer results, pilot program outcomes
+- Format: "Company X tested our solution for 2 weeks and saw [specific result]"
+- Honesty: "We're early stage, but our first 10 customers are seeing..."
+- Metrics: Focus on speed to value (days/weeks, not months)
+- Proof: Screenshot, testimonial quote, before/after comparison
+- Avoid: Fake enterprise logos, made-up Fortune 500 customers`;
+            } else if (maturity === 'early' || maturity === 'growth') {
+                return `GROWTH-STAGE CASE STUDY:
+- Use: Named customer success stories (with permission)
+- Format: "[Company Name], a [size] [industry] company, achieved [X] in [timeframe]"
+- Depth: Include challenge, solution, results (CSR framework)
+- Metrics: 2-3 specific KPIs (percentage improvement + absolute numbers)
+- Social proof: Link to case study page, G2 reviews, customer logo permission
+- Variety: Show different use cases/industries if possible`;
+            } else {
+                return `ENTERPRISE CASE STUDY:
+- Use: Detailed, documented ROI studies
+- Format: Vertical-specific case studies (healthcare, finance, etc.)
+- Depth: Multi-page PDF, video testimonials, executive quotes
+- Metrics: Business impact (revenue, cost savings, efficiency), technical metrics
+- Validation: Third-party verification, analyst reports, award mentions
+- Segmentation: Match case study to prospect's industry/size/use case`;
+            }
+        }
+        
+        function getBreakupToneGuidance(maturity) {
+            if (maturity === 'pre-seed' || maturity === 'seed') {
+                return `EARLY-STAGE BREAKUP TONE:
+- Sound genuinely okay with "no" (you can't afford to waste time on cold leads)
+- Be human: "Totally get it if timing isn't right"
+- Keep door open: You're building relationships for the long term
+- No pressure: Early-stage desperation kills credibility
+- Example: "No worries if this isn't a priority - feel free to reach out when timing improves!"`;
+            } else if (maturity === 'early' || maturity === 'growth') {
+                return `GROWTH-STAGE BREAKUP TONE:
+- Professional but warm
+- Acknowledge their time: "I know you're busy, so I'll keep this brief"
+- Value-first: Share one final insight/resource even if they don't buy
+- Permission-based: "Should I close your file, or revisit in Q3?"
+- Leave strong: "Either way, here's my direct line if anything changes"`;
+            } else {
+                return `ENTERPRISE BREAKUP TONE:
+- Highly professional, respectful of their process
+- Acknowledge complexity: "I understand enterprise decisions take time"
+- Long-term mindset: "Happy to reconnect when priorities shift"
+- Provide value: "In the meantime, here's a resource you might find useful"
+- Strategic close: "I'll check back in [timeframe] unless you'd prefer I don't"`;
+            }
+        }
+        
+        // Stage 2: Generate Personas
+        async function generatePersonas() {
+            const db = getDB();
+            
+            if (!db.company.apiKey) {
+                alert('Please add your Gemini API key in Stage 1');
+                return;
+            }
+            
+            document.getElementById('personaResults').style.display = 'none';
+            document.getElementById('personaGeneration').style.display = 'block';
+            
+            try {
+                const prompt = `You are an expert B2B sales strategist. Generate 3 highly specific buyer personas optimized for ${db.company.name}'s unique market position.
+
+- Name: ${db.company.name}
+- Industry: ${db.company.industry}
+- Size: ${db.company.size} employees
+- Maturity Stage: ${db.company.maturity}
+- Monthly Sales Budget: ${db.company.budget}
+- Products/Services: ${db.company.products}
+- Value Proposition: ${db.company.value}
+
+Based on maturity stage "${db.company.maturity}" and budget "${db.company.budget}":
+${getBudgetGuidance(db.company.budget, db.company.maturity)}
+
+Create 3 distinct personas that:
+1. Match companies YOU can realistically close given your stage and budget
+2. Represent different entry points into target organizations
+3. Have urgent, measurable pain points your solution addresses
+4. Show clear buying signals you can identify during prospecting
+
+For each persona, provide:
+- title: Specific job title (e.g., "VP of Sales Operations" not "Sales Leader")
+- department: Exact department name
+- companySize: Target company size range (align with your budget constraints)
+- painPoints: Array of 3-4 SPECIFIC, MEASURABLE challenges (not generic statements)
+  Example: "Manual data entry costs 15+ hours/week" vs "Data management is hard"
+- goals: Primary business objective this persona is measured on
+- buyingSignals: Array of 3-4 OBSERVABLE triggers indicating active buying intent
+  Example: "Posted job for Sales Ops Analyst" vs "Wants to improve efficiency"
+- channels: Array of communication channels ranked by effectiveness for this persona
+
+Return ONLY valid JSON array with no additional text:
+[{"title": "", "department": "", "companySize": "", "painPoints": [], "goals": "", "buyingSignals": [], "channels": []}]`;
+                
+                const personas = await callGeminiAPI(db.company.apiKey, prompt);
+                
+                db.personas = personas;
+                saveDB(db);
+                
+                document.getElementById('personaGeneration').style.display = 'none';
+                displayPersonas();
+                document.getElementById('continueToProspects').disabled = false;
+                
+            } catch (error) {
+                document.getElementById('personaGeneration').style.display = 'none';
+                document.getElementById('personaResults').style.display = 'block';
+                alert('Error generating personas: ' + error.message);
+            }
+        }
+        
+        function displayPersonas() {
+            const db = getDB();
+            const listEl = document.getElementById('personaList');
+            
+            if (db.personas.length === 0) {
+                listEl.innerHTML = '';
+                return;
+            }
+            
+            listEl.innerHTML = `
+                <h3 style="margin-top: var(--space-xl); margin-bottom: var(--space-md);">Generated Personas</h3>
+                <div class="grid-2">
+                    ${db.personas.map((p, i) => `
+                        <div class="persona-card">
+                            <h3>${p.title}</h3>
+                            <div class="persona-detail"><strong>Department:</strong> ${p.department}</div>
+                            <div class="persona-detail"><strong>Target Company Size:</strong> ${p.companySize}</div>
+                            <div class="persona-detail">
+                                <strong>Pain Points:</strong>
+                                <ul style="margin-left: 20px; margin-top: 8px;">
+                                    ${p.painPoints.map(pp => `<li>${pp}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="persona-detail"><strong>Goals:</strong> ${p.goals}</div>
+                            <div class="persona-detail"><strong>Buying Signals:</strong> ${p.buyingSignals}</div>
+                            <div class="persona-detail">
+                                <strong>Channels:</strong> ${p.channels.join(', ')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            document.getElementById('continueToProspects').disabled = false;
+        }
+        
+        // Stage 3: Prospects
+        function loadProspectPersonas() {
+            const db = getDB();
+            const select = document.getElementById('prospectPersona');
+            const searchSelect = document.getElementById('searchPersona');
+            
+            select.innerHTML = '<option value="">Choose a persona...</option>';
+            searchSelect.innerHTML = '<option value="">Choose a persona...</option>';
+            
+            db.personas.forEach((p, i) => {
+                select.innerHTML += `<option value="${i}">${p.title}</option>`;
+                searchSelect.innerHTML += `<option value="${i}">${p.title}</option>`;
+            });
+        }
+        
+        // AI Prospect Search
+        let currentProspectSuggestions = [];
+        
+        async function searchProspects() {
+            const db = getDB();
+            const personaIndex = document.getElementById('searchPersona').value;
+            const industry = document.getElementById('searchIndustry').value.trim();
+            const companySize = document.getElementById('searchCompanySize').value;
+            const geo = document.getElementById('searchGeo').value.trim();
+            
+            if (!personaIndex) {
+                alert('Please select a persona first');
+                return;
+            }
+            
+            if (!db.company.apiKey) {
+                alert('Please add your Gemini API key in Stage 1');
+                return;
+            }
+            
+            const persona = db.personas[personaIndex];
+            const suggestionsEl = document.getElementById('prospectSuggestions');
+            
+            suggestionsEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Searching for ideal prospects...</p></div>';
+            
+            try {
+                const prompt = `You are a B2B prospect intelligence researcher. Identify 8 real companies that are IDEAL prospects for ${db.company.name} given their constraints.
+
+Company: ${db.company.name}
+Maturity: ${db.company.maturity}
+Budget: ${db.company.budget}
+Industry: ${db.company.industry}
+
+${getBudgetGuidance(db.company.budget, db.company.maturity)}
+
+Title: ${persona.title}
+Department: ${persona.department}
+Pain Points: ${persona.painPoints.join(' | ')}
+
+${industry ? `Industry: ${industry}` : 'Industry: Any relevant to persona'}
+${companySize ? `Company Size: ${companySize} employees` : 'Company Size: Optimized for budget'}
+${geo ? `Geography: ${geo}` : 'Geography: No restrictions'}
+
+Find companies that:
+1. Match the size/budget constraints (avoid suggesting Fortune 500 if searcher is pre-seed)
+2. Show RECENT growth signals (last 6 months): funding, hiring, expansion, new products
+3. Have the target persona's department/role
+4. Face the specific pain points listed above
+5. Are actively making technology/service investments
+
+- Prioritize companies with RECENT news (funding, hiring surges, expansions in last 6 months)
+- If you find a company with exceptional timing signals, include it even if industry is adjacent
+- Focus on OBSERVABLE buying signals, not assumptions
+- FitScore should weight: Budget alignment (40%), Timing signals (30%), Pain point match (30%)
+
+Return ONLY valid JSON with no markdown or additional text:
+{"prospects": [
+  {
+    "name": "Exact company name",
+    "website": "Full URL with https://",
+    "industry": "Specific industry/sector",
+    "size": "Employee range (e.g., 50-200)",
+    "shortDescription": "One sentence about what they do",
+    "recentNews": "Specific recent event with timeframe (e.g., 'Raised $15M Series A in Jan 2026' or 'Hired VP of Sales in Dec 2025')",
+    "fitScore": 75
+  }
+]}`;
+
+                const response = await callGeminiAPI(db.company.apiKey, prompt);
+                currentProspectSuggestions = response.prospects || [];
+                
+                displayProspectSuggestions();
+                
+            } catch (error) {
+                suggestionsEl.innerHTML = `<div class="alert alert-error">Error searching for prospects: ${error.message}</div>`;
+            }
+        }
+        
+        function displayProspectSuggestions() {
+            const suggestionsEl = document.getElementById('prospectSuggestions');
+            
+            if (currentProspectSuggestions.length === 0) {
+                suggestionsEl.innerHTML = '';
+                return;
+            }
+            
+            suggestionsEl.innerHTML = `
+                <h3 style="color: var(--text-primary); margin-bottom: var(--space-md);">
+                    Suggested Prospects (${currentProspectSuggestions.length})
+                </h3>
+                ${currentProspectSuggestions.map((prospect, i) => `
+                    <div class="prospect-suggestion" data-index="${i}">
+                        <div style="display: flex; justify-content: space-between; align-items: start;">
+                            <div style="flex: 1;">
+                                <h4>${prospect.name}</h4>
+                                <p style="margin-bottom: var(--space-xs);">${prospect.industry} • ${prospect.size} employees</p>
+                                <p style="margin-bottom: var(--space-sm);">${prospect.shortDescription}</p>
+                                ${prospect.recentNews ? `<p style="color: var(--accent-success); font-size: 12px; margin-bottom: var(--space-sm);">📰 ${prospect.recentNews}</p>` : ''}
+                                <span class="fit-score ${prospect.fitScore >= 80 ? 'high' : prospect.fitScore >= 60 ? 'medium' : 'low'}">
+                                    Fit Score: ${prospect.fitScore}/100
+                                </span>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: var(--space-sm); margin-top: var(--space-md);">
+                            <button class="btn btn-primary" onclick="viewProspectReport(${i})" style="flex: 1;">
+                                📊 View AI Report
+                            </button>
+                            <button class="btn btn-secondary" onclick="discardProspectSuggestion(${i})">
+                                ✕ Skip
+                            </button>
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+        }
+        
+        async function viewProspectReport(index) {
+            const db = getDB();
+            const prospect = currentProspectSuggestions[index];
+            
+            // Show modal
+            let modal = document.getElementById('prospectReportModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'prospectReportModal';
+                modal.className = 'report-modal';
+                document.body.appendChild(modal);
+            }
+            
+            modal.innerHTML = `
+                <div class="report-modal-header">
+                    <h2 style="color: var(--text-primary); font-size: 24px;">${prospect.name}</h2>
+                    <button class="btn-icon" onclick="closeProspectReport()" style="font-size: 24px;">✕</button>
+                </div>
+                <div class="report-modal-content">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Generating detailed AI report...</p>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            
+            try {
+                const prompt = `You are a sales intelligence analyst. Create a qualification report for ${prospect.name} to determine if ${db.company.name} should pursue them NOW.
+
+${db.company.name} Profile:
+- Maturity: ${db.company.maturity}
+- Budget: ${db.company.budget}
+- Industry: ${db.company.industry}
+
+Strategic Guidance:
+${getBudgetGuidance(db.company.budget, db.company.maturity)}
+
+Company: ${prospect.name}
+Website: ${prospect.website}
+Industry: ${prospect.industry}
+Size: ${prospect.size}
+
+
+Search for OBSERVABLE signals indicating change/growth:
+- Funding announcements (Series A/B/C, venture rounds)
+- Executive hires (C-suite, VPs, Directors in relevant departments)
+- Geographic expansion (new offices, market entry)
+- Product launches or major feature releases
+- Technology partnerships or integrations announced
+- Job posting surges (especially in sales, marketing, operations)
+- Industry awards, press coverage, thought leadership
+
+Look for signs they're actively investing in solutions:
+- Technology stack changes (new tools adopted)
+- Digital transformation initiatives mentioned
+- Department restructuring or growth (new teams forming)
+- Scaling challenges mentioned in press/blog posts
+- Competitor customer wins in their industry (FOMO trigger)
+
+Score based on:
+- Timing Urgency (40%): How many recent change signals? How urgent?
+- Budget Alignment (30%): Can they afford us? Can we close them given our stage?
+- Pain Point Match (20%): Do they face problems we solve?
+- Accessibility (10%): Can we reach decision-makers at our maturity level?
+
+Automatically disqualify or downgrade if:
+- Recent layoffs or hiring freeze
+- Known customer of direct competitor
+- Company size misalignment (e.g., Fortune 100 when searcher is pre-seed)
+- Industry mismatch with searcher's expertise
+- Recent negative press (lawsuits, leadership scandals, financial trouble)
+
+Return ONLY valid JSON (no markdown, no extra text):
+{
+  "executiveSummary": "2-3 sentence summary of what's happening at this company RIGHT NOW and why it matters",
+  "qualificationScore": 85,
+  "timingSignals": [
+    "Funding: Raised $20M Series B in January 2026",
+    "Hiring: Posted 12 sales roles in last 30 days",
+    "Expansion: Opened Austin office in December 2025",
+    "Product: Launched enterprise tier in February 2026"
+  ],
+  "buyingSignals": [
+    "CRM migration: Mentioned switching from legacy system in blog post",
+    "Sales team growth: Tripling sales org per job postings",
+    "Digital transformation: CEO interview mentioned 'modernizing sales tech stack'"
+  ],
+  "firmographicFit": {
+    "industry": "match/partial/weak",
+    "size": "match/partial/weak",
+    "location": "match/partial/weak",
+    "overall": "Strong fit - size and industry align, geography neutral"
+  },
+  "idealContacts": [
+    "VP of Sales Operations",
+    "Director of Revenue Operations",
+    "Head of Sales Enablement",
+    "Chief Revenue Officer"
+  ],
+  "redFlags": [
+    "None identified" 
+  ],
+  "recommendedAction": "Pursue now: Multiple timing signals, actively scaling sales org, strong budget fit"
+}`;
+
+                const report = await callGeminiAPI(db.company.apiKey, prompt);
+                prospect.report = report;
+                
+                displayProspectReportContent(prospect, index);
+                
+            } catch (error) {
+                modal.querySelector('.report-modal-content').innerHTML = `
+                    <div class="alert alert-error">Error generating report: ${error.message}</div>
+                `;
+            }
+        }
+        
+        function displayProspectReportContent(prospect, index) {
+            const modal = document.getElementById('prospectReportModal');
+            const report = prospect.report;
+            
+            const scoreColor = report.qualificationScore >= 75 ? 'var(--accent-success)' : 
+                              report.qualificationScore >= 50 ? 'var(--accent-warning)' : 'var(--text-muted)';
+            const actionColor = report.recommendedAction.includes('Pursue') ? 'var(--accent-success)' : 
+                               report.recommendedAction.includes('Monitor') ? 'var(--accent-warning)' : 'var(--accent-danger)';
+            
+            modal.querySelector('.report-modal-content').innerHTML = `
+                <div style="display: flex; gap: var(--space-lg); margin-bottom: var(--space-lg); padding: var(--space-lg); background: var(--bg-elevated); border-radius: var(--radius-md);">
+                    <div style="flex: 1; text-align: center; padding: var(--space-md); background: rgba(0,0,0,0.2); border-radius: var(--radius-sm);">
+                        <div style="font-size: 36px; font-weight: 700; color: ${scoreColor};">${report.qualificationScore}</div>
+                        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Qualification Score</div>
+                    </div>
+                    <div style="flex: 2; display: flex; flex-direction: column; justify-content: center;">
+                        <div style="font-size: 14px; font-weight: 600; color: ${actionColor}; margin-bottom: 4px;">
+                            ${report.recommendedAction.split(':')[0]}
+                        </div>
+                        <div style="font-size: 13px; color: var(--text-secondary);">
+                            ${report.recommendedAction.includes(':') ? report.recommendedAction.split(':')[1].trim() : ''}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="report-section">
+                    <h3>📋 Executive Summary</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">${report.executiveSummary}</p>
+                </div>
+                
+                <div class="report-section">
+                    <h3>⚡ Recent Activity & Timing Signals</h3>
+                    <ul>
+                        ${report.timingSignals.map(signal => `<li>• ${signal}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="report-section">
+                    <h3>🎯 Buying Intent Indicators</h3>
+                    <ul>
+                        ${report.buyingSignals.map(signal => `<li>• ${signal}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="report-section">
+                    <h3>🏢 ICP Fit Analysis</h3>
+                    <div style="background: rgba(0,0,0,0.2); padding: var(--space-md); border-radius: var(--radius-sm); margin-bottom: var(--space-sm);">
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-bottom: var(--space-sm);">
+                            <div>
+                                <span style="font-size: 12px; color: var(--text-muted);">Industry:</span>
+                                <span style="margin-left: 8px; color: var(--text-primary);">${report.firmographicFit.industry || 'N/A'}</span>
+                            </div>
+                            <div>
+                                <span style="font-size: 12px; color: var(--text-muted);">Size:</span>
+                                <span style="margin-left: 8px; color: var(--text-primary);">${report.firmographicFit.size || 'N/A'}</span>
+                            </div>
+                            <div>
+                                <span style="font-size: 12px; color: var(--text-muted);">Location:</span>
+                                <span style="margin-left: 8px; color: var(--text-primary);">${report.firmographicFit.location || 'N/A'}</span>
+                            </div>
+                        </div>
+                        <div style="font-size: 13px; color: var(--text-secondary); padding-top: var(--space-sm); border-top: 1px solid var(--border-subtle);">
+                            ${report.firmographicFit.overall || 'No overall assessment available'}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="report-section">
+                    <h3>👥 Key Contacts to Target</h3>
+                    <ul>
+                        ${report.idealContacts.map(contact => `<li>• ${contact}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                ${report.redFlags && report.redFlags.length > 0 ? `
+                    <div class="report-section">
+                        <h3>🚨 Red Flags / Concerns</h3>
+                        <ul>
+                            ${report.redFlags.map(flag => `<li style="color: var(--accent-danger);">• ${flag}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
+                
+                <div style="display: flex; gap: var(--space-md); margin-top: var(--space-xl);">
+                    <button class="btn btn-success" onclick="keepProspect(${index})" style="flex: 1;">
+                        ✓ Keep & Find Contacts
+                    </button>
+                    <button class="btn btn-danger" onclick="discardAndClose(${index})">
+                        ✕ Discard
+                    </button>
+                </div>
+            `;
+        }
+        
+        function closeProspectReport() {
+            const modal = document.getElementById('prospectReportModal');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+        
+        async function keepProspect(index) {
+            const db = getDB();
+            const prospect = currentProspectSuggestions[index];
+            
+            // Save prospect with report
+            if (!db.savedProspects) {
+                db.savedProspects = [];
+            }
+            
+            db.savedProspects.push({
+                ...prospect,
+                contacts: []
+            });
+            
+            saveDB(db);
+            
+            // Remove from suggestions
+            currentProspectSuggestions.splice(index, 1);
+            displayProspectSuggestions();
+            closeProspectReport();
+            
+            // Show find contacts
+            alert(`✓ ${prospect.name} saved! Now finding key contacts to target...`);
+            await findContactsForProspect(db.savedProspects.length - 1);
+        }
+        
+        function discardAndClose(index) {
+            discardProspectSuggestion(index);
+            closeProspectReport();
+        }
+        
+        function discardProspectSuggestion(index) {
+            currentProspectSuggestions.splice(index, 1);
+            displayProspectSuggestions();
+        }
+        
+        async function findContactsForProspect(prospectIndex) {
+            const db = getDB();
+            const prospect = db.savedProspects[prospectIndex];
+            
+            if (!prospect.report || !prospect.report.idealContacts) {
+                alert('Please view the AI report first');
+                return;
+            }
+            
+            const modal = document.getElementById('prospectReportModal') || document.createElement('div');
+            modal.id = 'prospectReportModal';
+            modal.className = 'report-modal active';
+            if (!modal.parentElement) {
+                document.body.appendChild(modal);
+            }
+            
+            modal.innerHTML = `
+                <div class="report-modal-header">
+                    <h2 style="color: var(--text-primary); font-size: 24px;">Find Contacts at ${prospect.name}</h2>
+                    <button class="btn-icon" onclick="closeProspectReport()" style="font-size: 24px;">✕</button>
+                </div>
+                <div class="report-modal-content">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Finding key contacts to target...</p>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            
+            try {
+                const prompt = `You are a B2B contact researcher. Find 5-7 real people at ${prospect.name} who ${db.company.name} should target.
+
+${db.company.name}:
+- Maturity: ${db.company.maturity}
+- Budget: ${db.company.budget}
+
+${getContactTargetingGuidance(db.company.maturity, db.company.budget)}
+
+${prospect.report.idealContacts.map((role, i) => `${i + 1}. ${role}`).join('\n')}
+
+
+1. Search LinkedIn for ${prospect.name} employees in target roles
+2. Verify they're currently employed (check "Current" status)
+3. Assess decision-making authority based on title and tenure
+4. Prioritize contacts showing recent activity (posts, job changes, promotions)
+5. Look for contacts who engage with sales/marketing/operations content
+
+- Title match: Exact or close variation of target roles
+- Authority level: Appropriate seniority for searcher's maturity stage
+- Tenure: Prefer 6+ months (established but not entrenched)
+- Visibility: Active on LinkedIn or mentioned in company news
+- Accessibility: Reachable via LinkedIn InMail or connection requests
+
+Explain WHY each contact is a strong target:
+- "Direct authority over [pain point area]"
+- "Recent promotion suggests initiative to improve [function]"
+- "Posted about [relevant challenge] 2 weeks ago"
+- "Manages team of X, budget responsibility likely $Y+"
+- "Came from [company] where they used similar solutions"
+
+Return ONLY valid JSON (no markdown):
+{
+  "contacts": [
+    {
+      "fullName": "First Last",
+      "title": "Exact current title from LinkedIn",
+      "department": "Department name",
+      "linkedinUrl": "https://linkedin.com/in/profile-url",
+      "confidence": 90,
+      "matchReason": "VP Sales Ops with 18mo tenure, posted about CRM pain points, manages 5-person ops team"
+    }
+  ]
+}
+
+CRITICAL: Only include contacts you can verify exist. Confidence <70 means uncertain - don't include.`;
+
+                const response = await callGeminiAPI(db.company.apiKey, prompt);
+                prospect.contacts = response.contacts || [];
+                
+                db.savedProspects[prospectIndex] = prospect;
+                saveDB(db);
+                
+                displayContactsForProspect(prospect, prospectIndex);
+                
+            } catch (error) {
+                modal.querySelector('.report-modal-content').innerHTML = `
+                    <div class="alert alert-error">Error finding contacts: ${error.message}</div>
+                `;
+            }
+        }
+        
+        function displayContactsForProspect(prospect, prospectIndex) {
+            const modal = document.getElementById('prospectReportModal');
+            
+            modal.querySelector('.report-modal-content').innerHTML = `
+                <div class="alert alert-success" style="margin-bottom: var(--space-lg);">
+                    Found ${prospect.contacts.length} key contacts at ${prospect.name}
+                </div>
+                
+                <div class="report-section">
+                    <h3>👥 Key Contacts to Target</h3>
+                    ${prospect.contacts.map((contact, i) => {
+                        const initials = contact.fullName.split(' ').map(n => n[0]).join('');
+                        const isSelected = contact.selected !== false;
+                        
+                        return `
+                            <div class="contact-card">
+                                <div class="contact-avatar">${initials}</div>
+                                <div class="contact-info">
+                                    <h4>${contact.fullName}</h4>
+                                    <p>${contact.title} • ${contact.department}</p>
+                                    <p style="color: var(--text-muted); font-size: 12px; margin-top: 4px;">${contact.matchReason}</p>
+                                </div>
+                                <div class="contact-actions">
+                                    ${contact.linkedinUrl ? `
+                                        <a href="${contact.linkedinUrl}" target="_blank" class="btn-icon" title="View on LinkedIn">
+                                            🔗
+                                        </a>
+                                    ` : ''}
+                                    <button class="btn-icon ${isSelected ? 'selected' : ''}" 
+                                            onclick="toggleContactSelection(${prospectIndex}, ${i})"
+                                            title="${isSelected ? 'Selected for campaign' : 'Click to select'}">
+                                        ${isSelected ? '✓' : '○'}
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+                
+                <div style="display: flex; gap: var(--space-md); margin-top: var(--space-xl);">
+                    <button class="btn btn-primary" onclick="saveContactsAndContinue()" style="flex: 1;">
+                        ✓ Save Contacts & Continue
+                    </button>
+                </div>
+            `;
+        }
+        
+        function toggleContactSelection(prospectIndex, contactIndex) {
+            const db = getDB();
+            const contact = db.savedProspects[prospectIndex].contacts[contactIndex];
+            contact.selected = !contact.selected;
+            saveDB(db);
+            
+            // Update UI
+            displayContactsForProspect(db.savedProspects[prospectIndex], prospectIndex);
+        }
+        
+        function saveContactsAndContinue() {
+            const db = getDB();
+            
+            // Convert saved prospects with selected contacts to regular prospects format
+            db.savedProspects.forEach(sp => {
+                sp.contacts.filter(c => c.selected !== false).forEach(contact => {
+                    db.prospects.push({
+                        personaIndex: 0, // Use first persona for now
+                        name: contact.fullName,
+                        title: contact.title,
+                        company: sp.name,
+                        email: `${contact.fullName.toLowerCase().replace(/\s/g, '.')}@${sp.website.replace(/https?:\/\/(www\.)?/, '')}`,
+                        linkedin: contact.linkedinUrl || ''
+                    });
+                });
+            });
+            
+            saveDB(db);
+            closeProspectReport();
+            displayProspects();
+            
+            alert(`✓ Contacts saved! Ready to continue to campaign creation.`);
+        }
+        
+        function addProspect() {
+            const personaIndex = document.getElementById('prospectPersona').value;
+            const name = document.getElementById('prospectName').value.trim();
+            const title = document.getElementById('prospectTitle').value.trim();
+            const company = document.getElementById('prospectCompany').value.trim();
+            const email = document.getElementById('prospectEmail').value.trim();
+            const linkedin = document.getElementById('prospectLinkedIn').value.trim();
+            
+            if (!personaIndex || !name || !title || !company || !email) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            const db = getDB();
+            db.prospects.push({
+                personaIndex: parseInt(personaIndex),
+                name,
+                title,
+                company,
+                email,
+                linkedin
+            });
+            saveDB(db);
+            
+            // Clear form
+            document.getElementById('prospectName').value = '';
+            document.getElementById('prospectTitle').value = '';
+            document.getElementById('prospectCompany').value = '';
+            document.getElementById('prospectEmail').value = '';
+            document.getElementById('prospectLinkedIn').value = '';
+            
+            displayProspects();
+        }
+        
+        function displayProspects() {
+            const db = getDB();
+            const listEl = document.getElementById('prospectList');
+            document.getElementById('prospectCount').textContent = db.prospects.length;
+            
+            if (db.prospects.length === 0) {
+                listEl.innerHTML = '<h3 style="margin-bottom: var(--space-md);">Target Prospects (0)</h3>';
+                document.getElementById('continueToCampaign').disabled = true;
+                return;
+            }
+            
+            listEl.innerHTML = `
+                <h3 style="margin-bottom: var(--space-md);">Target Prospects (${db.prospects.length})</h3>
+                ${db.prospects.map((p, i) => `
+                    <div class="prospect-item">
+                        <div class="prospect-info">
+                            <h4>${p.name}</h4>
+                            <p>${p.title} at ${p.company}</p>
+                            <p style="font-size: 12px; color: var(--blue);">Persona: ${db.personas[p.personaIndex].title}</p>
+                        </div>
+                        <button class="btn btn-danger" onclick="removeProspect(${i})" style="padding: 8px 16px;">Remove</button>
+                    </div>
+                `).join('')}
+            `;
+            
+            document.getElementById('continueToCampaign').disabled = false;
+        }
+        
+        function removeProspect(index) {
+            const db = getDB();
+            db.prospects.splice(index, 1);
+            saveDB(db);
+            displayProspects();
+        }
+        
+        // Stage 4: Campaign Calendar
+        function generateCampaignCalendar() {
+            const duration = parseInt(document.getElementById('campaignDuration').value);
+            const emailCount = parseInt(document.getElementById('emailTouchpoints').value);
+            const linkedinCount = parseInt(document.getElementById('linkedinTouchpoints').value);
+            
+            const db = getDB();
+            const calendar = [];
+            
+            // Day 1: Email + LinkedIn Profile View
+            calendar.push({
+                day: 1,
+                touchpoints: [
+                    { type: 'email', action: 'Initial Email - Timeline Hook' },
+                    { type: 'linkedin', action: 'Profile View' }
+                ]
+            });
+            
+            // Day 2: LinkedIn Connection
+            calendar.push({
+                day: 2,
+                touchpoints: [
+                    { type: 'linkedin', action: 'Connection Request with Note' }
+                ]
+            });
+            
+            // Day 3-5: Email Follow-up
+            if (duration >= 10) {
+                calendar.push({
+                    day: 5,
+                    touchpoints: [
+                        { type: 'email', action: 'Follow-up Email - Case Study' }
+                    ]
+                });
+            }
+            
+            // Day 7: LinkedIn Engagement
+            if (duration >= 10) {
+                calendar.push({
+                    day: 7,
+                    touchpoints: [
+                        { type: 'linkedin', action: 'Engage with Their Content' }
+                    ]
+                });
+            }
+            
+            // Day 8: Email #3
+            if (emailCount >= 3 && duration >= 10) {
+                calendar.push({
+                    day: 8,
+                    touchpoints: [
+                        { type: 'email', action: 'Email - Social Proof + Numbers Hook' }
+                    ]
+                });
+            }
+            
+            // Day 10: LinkedIn DM
+            if (duration >= 21) {
+                calendar.push({
+                    day: 10,
+                    touchpoints: [
+                        { type: 'linkedin', action: 'Direct Message with Resource' }
+                    ]
+                });
+            }
+            
+            // Day 12: Email #4
+            if (emailCount >= 4 && duration >= 21) {
+                calendar.push({
+                    day: 12,
+                    touchpoints: [
+                        { type: 'email', action: 'Email - PAS Framework (Pain Point)' }
+                    ]
+                });
+            }
+            
+            // Day 15: LinkedIn Engagement
+            if (linkedinCount >= 4 && duration >= 21) {
+                calendar.push({
+                    day: 15,
+                    touchpoints: [
+                        { type: 'linkedin', action: 'Share Relevant Content' }
+                    ]
+                });
+            }
+            
+            // Day 17: Email #5 (Breakup)
+            if (emailCount >= 5 && duration >= 21) {
+                calendar.push({
+                    day: 17,
+                    touchpoints: [
+                        { type: 'email', action: 'Breakup Email with Soft Close' }
+                    ]
+                });
+            }
+            
+            // Day 21: Final Touch
+            if (duration >= 21) {
+                calendar.push({
+                    day: 21,
+                    touchpoints: [
+                        { type: 'linkedin', action: 'Final LinkedIn Message or Voice Note' },
+                        { type: 'phone', action: 'Phone Call (Optional)' }
+                    ]
+                });
+            }
+            
+            db.campaign = {
+                duration,
+                emailCount,
+                linkedinCount,
+                calendar
+            };
+            saveDB(db);
+            
+            displayCampaignCalendar();
+            document.getElementById('continueToContent').disabled = false;
+        }
+        
+        function displayCampaignCalendar() {
+            const db = getDB();
+            const calendarEl = document.getElementById('campaignCalendar');
+            
+            if (!db.campaign.calendar) return;
+            
+            calendarEl.innerHTML = `
+                <h3 style="margin-top: var(--space-xl); margin-bottom: var(--space-md);">
+                    ${db.campaign.duration}-Day Campaign Calendar
+                </h3>
+                <div class="calendar-grid">
+                    ${db.campaign.calendar.map(day => `
+                        <div class="calendar-day">
+                            <h4>Day ${day.day}</h4>
+                            ${day.touchpoints.map(tp => `
+                                <div class="touchpoint ${tp.type}">${tp.action}</div>
+                            `).join('')}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+        
+        // Stage 5: Generate Content
+        async function generateAllContent() {
+            const db = getDB();
+            
+            if (!db.company.apiKey) {
+                alert('Please add your Gemini API key');
+                return;
+            }
+            
+            document.getElementById('contentList').style.display = 'none';
+            document.getElementById('contentGeneration').style.display = 'block';
+            
+            try {
+                const content = [];
+                
+                // Generate content for each touchpoint in the campaign
+                for (const day of db.campaign.calendar) {
+                    for (const touchpoint of day.touchpoints) {
+                        if (touchpoint.type === 'email' || touchpoint.type === 'linkedin') {
+                            const generatedContent = await generateTouchpointContent(
+                                db,
+                                day.day,
+                                touchpoint.type,
+                                touchpoint.action
+                            );
+                            content.push({
+                                day: day.day,
+                                type: touchpoint.type,
+                                action: touchpoint.action,
+                                content: generatedContent,
+                                approved: false
+                            });
+                        }
+                    }
+                }
+                
+                db.content = content;
+                saveDB(db);
+                
+                document.getElementById('contentGeneration').style.display = 'none';
+                displayContent();
+                
+            } catch (error) {
+                document.getElementById('contentGeneration').style.display = 'none';
+                document.getElementById('contentList').style.display = 'block';
+                alert('Error generating content: ' + error.message);
+            }
+        }
+        
+        async function generateTouchpointContent(db, day, type, action) {
+            const persona = db.personas[0]; // Use first persona for demo
+            const prospect = db.prospects[0]; // Use first prospect for demo
+            
+            let prompt = '';
+            
+            if (type === 'email') {
+                if (action.includes('Initial')) {
+                    prompt = `Write Email #1 (Initial Outreach with Timeline Hook) for ${prospect.name} at ${prospect.company}.
+
+This is the first email in the sequence.
+
+Company: ${db.company.name}
+Maturity: ${db.company.maturity}
+Industry: ${db.company.industry}
+Value Prop: ${db.company.value}
+
+Prospect:
+Name: ${prospect.name}
+Title: ${prospect.title}
+Company: ${prospect.company}
+Persona: ${persona.title}
+Primary Pain Points: ${persona.painPoints.join(' | ')}
+
+${getEmailToneGuidance(db.company.maturity)}
+
+EMAIL FRAMEWORK - INITIAL OUTREACH:
+
+SUBJECT LINE: [Specific Result] in [Specific Timeframe] for [Similar Company/Role]
+
+Examples:
+- "47% faster deal cycles for [Similar Company]"
+- "How [VP Sales Ops] cut data entry time by 15hrs/week"
+- "3-week ROI for [Industry] companies like ${prospect.company}"
+
+Requirements:
+✓ Include a NUMBER (percentage, time, money)
+✓ Reference timeframe (weeks, months, "in Q4")
+✓ Mention similar company/role (builds relevance)
+✗ Avoid: Generic claims, "Re:", "Quick question", clickbait
+
+BODY:
+
+Opening (Success Story Hook):
+Start with a specific, recent success story:
+"[Similar Company] was facing [specific pain point]. They implemented [solution] and saw [specific result] in [timeframe]."
+
+Requirements:
+- Use a real or realistic company similar to ${prospect.company}
+- Cite a SPECIFIC metric (15hrs saved, 47% faster, $200K revenue)
+- Include a SHORT timeframe (days, weeks, not "eventually")
+
+Connection to Prospect:
+Connect their role/company to the success story:
+"I noticed ${prospect.company} is [growing/expanding/scaling], which often means [pain point persona faces]."
+
+Value Proposition (1-2 sentences):
+Explain what you do in plain language:
+"We help ${persona.title}s at ${db.company.industry} companies [solve specific pain point] by [how your solution works]."
+
+Social Proof:
+${getCaseStudyGuidance(db.company.maturity)}
+
+Call to Action (Low-pressure):
+"Would a 15-minute conversation about [specific outcome] make sense for ${prospect.company}?"
+
+Sign-off:
+Keep it simple and human.
+
+Return ONLY valid JSON:
+{
+  "subject": "Subject line with number and timeframe",
+  "body": "Email body as continuous text with proper line breaks. Use \\n\\n for paragraph breaks."
+}`;
+                } else if (action.includes('Social Proof')) {
+                    prompt = `Write Email #3 (Social Proof + Numbers Hook) for ${prospect.name} at ${prospect.company}.
+
+This is the third email in the sequence. No response to previous two emails.
+
+Company: ${db.company.name}
+Maturity: ${db.company.maturity}
+Industry: ${db.company.industry}
+
+Prospect:
+Name: ${prospect.name}
+Title: ${prospect.title}
+Company: ${prospect.company}
+Persona: ${persona.title}
+
+${getEmailToneGuidance(db.company.maturity)}
+
+EMAIL FRAMEWORK - SOCIAL PROOF + NUMBERS:
+
+SUBJECT LINE: [Number] [Similar Companies] are seeing [Result]
+
+Examples:
+- "47 SaaS companies reduced churn by 30%+ in Q1"
+- "Why 8 out of 10 [Industry] VPs switched to [Solution]"
+
+BODY:
+
+Pattern Interrupt:
+"Quick data point that might be relevant for ${prospect.company}:"
+
+Share Aggregated Results:
+"We analyzed results from [number] companies in [industry/segment], and found:"
+- Metric 1: [Percentage/number improvement]
+- Metric 2: [Timeframe to results]
+- Metric 3: [Common outcome]
+
+Why It Matters for Them:
+"The common thread? Companies that [took specific action] saw [specific result]."
+
+Connect to Their Situation:
+"Given ${prospect.company}'s [recent news/growth/challenge], this might be worth exploring."
+
+Low-Friction CTA:
+"Worth a 10-minute conversation to see if there's a fit?"
+
+Return complete email. Focus on data, patterns, and curiosity rather than selling.`;
+                
+                } else if (action.includes('PAS Framework')) {
+                    prompt = `Write Email #4 (PAS Framework - Pain Point) for ${prospect.name} at ${prospect.company}.
+
+This is the fourth email. Still no response, so we're addressing a specific pain point directly.
+
+Company: ${db.company.name}
+Maturity: ${db.company.maturity}
+Industry: ${db.company.industry}
+
+Prospect:
+Name: ${prospect.name}
+Title: ${prospect.title}
+Company: ${prospect.company}
+Persona: ${persona.title}
+Pain Points: ${persona.painPoints.join(' | ')}
+
+${getEmailToneGuidance(db.company.maturity)}
+
+EMAIL FRAMEWORK - PAS (Problem-Agitate-Solution):
+
+SUBJECT LINE: [Specific Pain Point] costing you [Time/Money]?
+
+Examples:
+- "Is manual reporting costing you 10+ hours/week?"
+- "Data silos slowing down your team's decisions?"
+
+BODY:
+
+Problem (Empathize):
+"Most ${persona.title}s I talk to struggle with [specific pain point from persona]."
+
+Agitate (Make it real):
+"This usually means:"
+- Consequence 1 (time cost)
+- Consequence 2 (money/opportunity cost)
+- Consequence 3 (frustration/team impact)
+
+Solution (How you solve it):
+"${db.company.name} helps by [specific mechanism]."
+
+Quick proof:
+"[Company/Role] went from [before state] to [after state] in [timeframe]."
+
+Direct CTA:
+"If this sounds familiar, let's talk. 15 minutes to see if we can help ${prospect.company} avoid [specific pain]."
+
+Return complete email. Make the pain vivid but don't be manipulative. Show you understand their world.`;
+                
+                } else if (action.includes('Breakup')) {
+                    prompt = `Write Email #5 (Breakup Email) for ${prospect.name} at ${prospect.company}.
+
+This is the final email in the sequence. They haven't responded to 4 previous emails.
+
+Company: ${db.company.name}
+Maturity: ${db.company.maturity}
+
+Prospect:
+Name: ${prospect.name}
+Title: ${prospect.title}
+Company: ${prospect.company}
+
+${getBreakupToneGuidance(db.company.maturity)}
+
+EMAIL FRAMEWORK - BREAKUP EMAIL:
+
+SUBJECT LINE: Closing your file - last note
+
+Examples:
+- "Should I close your file?"
+- "Last email from me - promise"
+- "Closing the loop"
+
+BODY:
+
+Acknowledge Silence:
+"Hi ${prospect.name}, I've reached out a few times about [brief value prop], but haven't heard back."
+
+Permission-Based Close:
+"I'm guessing this isn't a priority right now, which is totally fine."
+
+Final Value Offer:
+"Before I close your file, I wanted to share one resource that might be helpful: [relevant resource/insight/tool]."
+
+Leave Door Open:
+"If timing changes, feel free to reach out. Otherwise, I'll stop the emails."
+
+Human Sign-off:
+"Thanks for your time, and best of luck with [relevant goal/initiative]."
+
+P.S. Hook (Optional):
+"P.S. If I'm completely off-base and you are interested, just reply 'YES' and I'll send over [specific next step]."
+
+Return complete email. Be gracious, professional, and genuinely okay with "no."`;
+                
+                } else {
+                    prompt = `Write a follow-up email for ${prospect.name} at ${prospect.company}.
+
+Company: ${db.company.name}
+Maturity: ${db.company.maturity}
+Industry: ${db.company.industry}
+Value Prop: ${db.company.value}
+
+Prospect:
+Name: ${prospect.name}
+Title: ${prospect.title}
+Company: ${prospect.company}
+Persona: ${persona.title}
+Primary Pain Points: ${persona.painPoints.join(' | ')}
+
+${getEmailToneGuidance(db.company.maturity)}
+
+Return ONLY valid JSON:
+{
+  "subject": "Subject line",
+  "body": "Email body as continuous text with proper line breaks. Use \\n\\n for paragraph breaks."
+}`;
+                } else if (action.includes('Case Study')) {
+                    prompt = `Write a follow-up email with case study for ${prospect.name} at ${prospect.company}.
+
+Recipient: ${prospect.name}, ${prospect.title}
+Company: ${prospect.company}
+Previous Email: Sent Day 1 (Timeline Hook email)
+This Email: Day 5 follow-up
+
+Company: ${db.company.name}
+Maturity: ${db.company.maturity}
+
+${getCaseStudyGuidance(db.company.maturity)}
+
+SUBJECT LINE:
+Choose based on maturity:
+- Early-stage: "Quick follow-up: [Similar Company]'s results"
+- Growth-stage: "Case study: [Industry] company saved [Metric]"
+- Enterprise: "[Company Name] case study for ${prospect.company}"
+
+BODY:
+Acknowledge previous email, share case study with specific metrics, and provide clear CTA.
+
+Return ONLY valid JSON:
+{
+  "subject": "Subject line referencing case study",
+  "body": "Email body with case study. Use \\n\\n for paragraph breaks."
+}`;
+                } else if (action.includes('Breakup')) {
+                    prompt = `Write a breakup email for ${prospect.name} (final attempt in sequence).
+
+Recipient: ${prospect.name}
+Previous Touchpoints: Day 1 (Timeline Hook), Day 5 (Case Study), Day 8 (Social Proof)
+This Email: Day 17 (Breakup/Final)
+Status: No response to any previous emails
+
+Company: ${db.company.name}
+Maturity: ${db.company.maturity}
+
+${getBreakupToneGuidance(db.company.maturity)}
+
+SUBJECT LINE: Closing your file - last note
+
+BODY:
+Be gracious, provide final value, leave door open.
+
+Return ONLY valid JSON:
+{
+  "subject": "Subject line creating FOMO or requesting permission",
+  "body": "Breakup email body. Use \\n\\n for paragraph breaks."
+}`;
+                }
+            } else if (type === 'linkedin') {
+                if (action.includes('Connection Request')) {
+                    prompt = `Write a LinkedIn connection request note for ${prospect.name} at ${prospect.company}.
+
+Maximum 300 characters (LinkedIn limit).
+
+Company: ${db.company.name}
+Maturity: ${db.company.maturity}
+
+Prospect:
+Name: ${prospect.name}
+Title: ${prospect.title}
+Company: ${prospect.company}
+Persona: ${persona.title}
+
+Requirements:
+- Maximum 300 characters INCLUDING spaces
+- Personal, specific, not salesy
+- Reference something about them or their company
+
+Structure:
+"Hi ${prospect.name}, [Specific observation]. I work with ${persona.title}s in ${db.company.industry} on [outcome]. Would love to connect."
+
+Return ONLY the connection note text (plain text, no JSON). Must be under 300 characters.`;
+                
+                } else if (action.includes('Direct Message')) {
+                    prompt = `Write a LinkedIn Direct Message for ${prospect.name} at ${prospect.company}.
+
+They accepted your connection request a few days ago.
+
+Company: ${db.company.name}
+Maturity: ${db.company.maturity}
+
+Prospect:
+Name: ${prospect.name}
+Title: ${prospect.title}
+Company: ${prospect.company}
+Persona: ${persona.title}
+Pain Points: ${persona.painPoints.join(' | ')}
+
+Thank them, provide value, ask consultative question, keep it conversational.
+
+${getEmailToneGuidance(db.company.maturity)}
+
+Return ONLY plain text message (no JSON).`;
+                
+                } else {
+                    prompt = `Write a LinkedIn message for ${prospect.name}.
+
+Action: ${action}
+
+Keep it brief, personal, and value-focused. Return ONLY plain text (no JSON).`;
+                }
+            }
+            
+            const response = await callGeminiAPI(db.company.apiKey, prompt);
+            return response;
+        }
+        
+        function displayContent() {
+            const db = getDB();
+            const listEl = document.getElementById('contentList');
+            
+            if (db.content.length === 0) return;
+            
+            listEl.innerHTML = `
+                <h3 style="margin-bottom: var(--space-lg);">Generated Content (${db.content.length} touchpoints)</h3>
+                ${db.content.map((item, i) => `
+                    <div class="content-preview">
+                        <h4>Day ${item.day} - ${item.type.toUpperCase()}: ${item.action}</h4>
+                        <div style="margin-bottom: var(--space-md);">
+                            <span class="badge ${item.approved ? 'badge-success' : 'badge-pending'}">
+                                ${item.approved ? '✓ Approved' : 'Pending Review'}
+                            </span>
+                        </div>
+                        
+                        ${item.type === 'email' ? `
+                            <div style="margin-bottom: var(--space-md);">
+                                <strong style="color: var(--text-primary);">Subject:</strong>
+                                <div style="background: var(--bg-elevated); padding: var(--space-sm); border-radius: var(--radius-sm); margin-top: var(--space-xs); color: var(--text-secondary);">
+                                    ${item.content.subject || 'N/A'}
+                                </div>
+                            </div>
+                            <div style="margin-bottom: var(--space-xs);">
+                                <strong style="color: var(--text-primary);">Body:</strong>
+                            </div>
+                            <pre>${item.content.body || item.content}</pre>
+                        ` : `
+                            <pre>${item.content}</pre>
+                        `}
+                        
+                        <div class="content-actions">
+                            <button class="btn ${item.approved ? 'btn-success' : 'btn-primary'}" onclick="approveContent(${i})" ${item.approved ? 'disabled' : ''}>
+                                ${item.approved ? '✓ Approved' : '✓ Approve'}
+                            </button>
+                            <button class="btn btn-secondary" onclick="regenerateContent(${i})">
+                                🔄 Regenerate
+                            </button>
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+            
+            const allApproved = db.content.every(c => c.approved);
+            document.getElementById('continueToExecute').disabled = !allApproved;
+        }
+        
+        function approveContent(index) {
+            const db = getDB();
+            db.content[index].approved = true;
+            saveDB(db);
+            displayContent();
+        }
+        
+        async function regenerateContent(index) {
+            const db = getDB();
+            const item = db.content[index];
+            
+            if (!confirm('Regenerate this content? This will create a new version.')) {
+                return;
+            }
+            
+            const listEl = document.getElementById('contentList');
+            const originalHTML = listEl.innerHTML;
+            
+            listEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Regenerating content...</p></div>';
+            
+            try {
+                const newContent = await generateTouchpointContent(
+                    db,
+                    item.day,
+                    item.type,
+                    item.action
+                );
+                
+                db.content[index].content = newContent;
+                db.content[index].approved = false;
+                saveDB(db);
+                
+                displayContent();
+            } catch (error) {
+                listEl.innerHTML = originalHTML;
+                alert('Error regenerating content: ' + error.message);
+            }
+        }
+        
+        // Stage 6: Execution
+        function displayExecutionSummary() {
+            const db = getDB();
+            const summaryEl = document.getElementById('executionSummary');
+            
+            const totalProspects = db.prospects.length;
+            const totalTouchpoints = db.campaign.calendar.reduce((sum, day) => sum + day.touchpoints.length, 0);
+            const totalEmails = db.content.filter(c => c.type === 'email').length;
+            const totalLinkedIn = db.content.filter(c => c.type === 'linkedin').length;
+            
+            summaryEl.innerHTML = `
+                <div class="grid-2">
+                    <div class="glass-card" style="text-align: center;">
+                        <h3 style="font-size: 48px; color: var(--accent-primary); margin-bottom: var(--space-sm);">${totalProspects}</h3>
+                        <p style="color: var(--text-secondary);">Target Prospects</p>
+                    </div>
+                    
+                    <div class="glass-card" style="text-align: center;">
+                        <h3 style="font-size: 48px; color: var(--accent-primary); margin-bottom: var(--space-sm);">${db.campaign.duration}</h3>
+                        <p style="color: var(--text-secondary);">Day Campaign</p>
+                    </div>
+                    
+                    <div class="glass-card" style="text-align: center;">
+                        <h3 style="font-size: 48px; color: var(--accent-primary); margin-bottom: var(--space-sm);">${totalEmails}</h3>
+                        <p style="color: var(--text-secondary);">Email Touchpoints</p>
+                    </div>
+                    
+                    <div class="glass-card" style="text-align: center;">
+                        <h3 style="font-size: 48px; color: var(--accent-primary); margin-bottom: var(--space-sm);">${totalLinkedIn}</h3>
+                        <p style="color: var(--text-secondary);">LinkedIn Touchpoints</p>
+                    </div>
+                </div>
+                
+                <div class="alert alert-info" style="margin-top: var(--space-xl);">
+                    <strong>Campaign Ready!</strong> All ${totalTouchpoints} touchpoints across ${db.campaign.duration} days are prepared and personalized for ${totalProspects} prospects.
+                </div>
+            `;
+        }
+        
+        function executeCampaign() {
+            alert('🚀 Campaign Execution Started!\n\nIn a production environment:\n- Emails would be sent via SMTP/SendGrid\n- LinkedIn messages would post via LinkedIn API\n- All touchpoints would execute on schedule\n- Tracking and analytics would be recorded\n\nFor this demo, all content has been generated and is ready for manual execution.');
+        }
+        
+        function resetApp() {
+            if (confirm('Are you sure you want to start a new campaign? All current data will be cleared.')) {
+                localStorage.removeItem(DB_KEY);
+                location.reload();
+            }
+        }
+        
+        // Gemini API Integration
+        async function callGeminiAPI(apiKey, prompt) {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{ text: prompt }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        topK: 40,
+                        topP: 0.95,
+                        maxOutputTokens: 2048
+                    }
+                })
+            });
+            
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error?.message || 'API request failed');
+            }
+            
+            const data = await response.json();
+            const text = data.candidates[0].content.parts[0].text;
+            
+            // Try to parse as JSON, fallback to text
+            try {
+                // Remove markdown code blocks if present
+                const cleaned = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+                return JSON.parse(cleaned);
+            } catch (e) {
+                return text;
+            }
+        }
+        
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', () => {
+            const db = getDB();
+            
+            // Set up stage navigation
+            document.querySelectorAll('.stage-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    goToStage(parseInt(btn.dataset.stage));
+                });
+            });
+            
+            // Load current stage
+            goToStage(db.stage || 1);
+        });
+                    <div class="content-preview">
+                        <h4>Day ${item.day} - ${item.type.toUpperCase()}: ${item.action}</h4>
+                        ${item.type === 'email' ? `
+                            <div style="margin-top: var(--space-md);">
+                                <strong style="display: block; margin-bottom: var(--space-xs); color: var(--text-primary);">Subject:</strong>
+                                <div style="background: var(--bg-elevated); padding: var(--space-sm); border-radius: var(--radius-sm); margin-bottom: var(--space-md); color: var(--text-secondary);">
+                                    ${item.content.subject || 'N/A'}
+                                </div>
+                                <strong style="display: block; margin-bottom: var(--space-xs); color: var(--text-primary);">Body:</strong>
+                            </div>
+                        ` : ''}
+                        <pre>${item.type === 'email' ? item.content.body : item.content}</pre>
+                        <div class="content-actions">
+                            <button class="btn ${item.approved ? 'btn-success' : 'btn-primary'}" onclick="approveContent(${i})" ${item.approved ? 'disabled' : ''}>
+                                ${item.approved ? '✓ Approved' : 'Approve'}
+                            </button>
+                            <button class="btn btn-secondary" onclick="regenerateContent(${i})">
+                                🔄 Regenerate
+                            </button>
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+            
+            const allApproved = db.content.every(c => c.approved);
+            document.getElementById('continueToExecute').disabled = !allApproved;
+        }
+        
+        function approveContent(index) {
+            const db = getDB();
+            db.content[index].approved = true;
+            saveDB(db);
+            displayContent();
+        }
+        
+        async function regenerateContent(index) {
+            const db = getDB();
+            const item = db.content[index];
+            
+            if (!confirm('Regenerate this content? This will create a new version.')) {
+                return;
+            }
+            
+            const listEl = document.getElementById('contentList');
+            const originalHTML = listEl.innerHTML;
+            
+            listEl.innerHTML = '<div class="loading"><div class="spinner"></div><p>Regenerating content...</p></div>';
+            
+            try {
+                const newContent = await generateTouchpointContent(
+                    db,
+                    item.day,
+                    item.type,
+                    item.action
+                );
+                db.content[index].content = newContent;
+                db.content[index].approved = false;
+                saveDB(db);
+                displayContent();
+            } catch (error) {
+                listEl.innerHTML = originalHTML;
+                alert('Error regenerating content: ' + error.message);
+            }
+        }
+        
+        // Stage 6: Execution
+        function displayExecutionSummary() {
+            const db = getDB();
+            const summaryEl = document.getElementById('executionSummary');
+            
+            const totalTouchpoints = db.campaign.calendar.reduce((sum, day) => sum + day.touchpoints.length, 0);
+            const emailCount = db.content.filter(c => c.type === 'email').length;
+            const linkedinCount = db.content.filter(c => c.type === 'linkedin').length;
+            
+            summaryEl.innerHTML = `
+                <div class="grid-2">
+                    <div class="glass-card" style="text-align: center;">
+                        <h3 style="font-size: 48px; color: var(--accent-primary); margin-bottom: var(--space-sm);">${db.prospects.length}</h3>
+                        <p style="color: var(--text-secondary);">Target Prospects</p>
+                    </div>
+                    
+                    <div class="glass-card" style="text-align: center;">
+                        <h3 style="font-size: 48px; color: var(--accent-primary); margin-bottom: var(--space-sm);">${db.campaign.duration}</h3>
+                        <p style="color: var(--text-secondary);">Day Campaign</p>
+                    </div>
+                    
+                    <div class="glass-card" style="text-align: center;">
+                        <h3 style="font-size: 48px; color: var(--accent-primary); margin-bottom: var(--space-sm);">${emailCount}</h3>
+                        <p style="color: var(--text-secondary);">Email Touchpoints</p>
+                    </div>
+                    
+                    <div class="glass-card" style="text-align: center;">
+                        <h3 style="font-size: 48px; color: var(--accent-primary); margin-bottom: var(--space-sm);">${linkedinCount}</h3>
+                        <p style="color: var(--text-secondary);">LinkedIn Touchpoints</p>
+                    </div>
+                </div>
+                
+                <div class="alert alert-info" style="margin-top: var(--space-xl);">
+                    <strong>Campaign Ready!</strong> All ${totalTouchpoints} touchpoints across ${db.campaign.duration} days are prepared and personalized for ${db.prospects.length} prospects.
+                </div>
+            `;
+        }
+        
+        function executeCampaign() {
+            const db = getDB();
+            alert(`🚀 Campaign Execution Started!\n\nIn a production environment:\n\n✓ ${db.content.filter(c => c.type === 'email').length} emails would be sent via SMTP/SendGrid\n✓ ${db.content.filter(c => c.type === 'linkedin').length} LinkedIn messages would post via API\n✓ All touchpoints would execute on schedule over ${db.campaign.duration} days\n✓ Tracking and analytics would be recorded\n✓ ${db.prospects.length} prospects would be engaged\n\nFor this demo, all content has been generated and is ready for manual execution.`);
+        }
+        
+        // Gemini API Integration
+        async function callGeminiAPI(apiKey, prompt) {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: prompt
+                        }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        topK: 40,
+                        topP: 0.95,
+                        maxOutputTokens: 2048,
+                    }
+                })
+            });
+            
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error?.message || 'API request failed');
+            }
+            
+            const data = await response.json();
+            const text = data.candidates[0].content.parts[0].text;
+            
+            // Try to parse JSON if response is JSON
+            try {
+                // Remove markdown code fences if present
+                const cleanText = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+                return JSON.parse(cleanText);
+            } catch {
+                return text;
+            }
+        }
+        
+        // Maturity & Budget Guidance Functions
+        function getBudgetGuidance(budget, maturity) {
+            const budgetRanges = {
+                '0-500': 'ULTRA-LEAN APPROACH: Target small companies (1-50 employees) with short sales cycles. Focus on single decision-makers, not committees. Prioritize fast-close, high-intent prospects. Avoid enterprise targets.',
+                '500-2000': 'SCRAPPY OUTREACH: Target SMBs (10-200 employees). Look for companies showing buying signals. Focus on mid-level managers who can champion solutions. Sales cycle: 2-4 weeks ideal.',
+                '2000-5000': 'GROWING TEAM BUDGET: Can pursue mid-market (50-500 employees). Mix of manager and director-level targets. Sales cycle: 1-2 months acceptable. Some multi-stakeholder deals OK.',
+                '5000-10000': 'SCALING BUDGET: Target mid-market to lower enterprise (100-1000 employees). VP-level contacts. Can handle 2-3 month sales cycles. Committee-based buying acceptable.',
+                '10000-25000': 'ESTABLISHED BUDGET: Full mid-market and enterprise focus (200-5000 employees). C-suite and VP targets. Sales cycles 3-6 months. Complex, multi-stakeholder deals.',
+                '25000+': 'ENTERPRISE BUDGET: Fortune 500 and large enterprise targets (1000+ employees). C-suite only. Sales cycles 6-12 months. Strategic, high-value deals.'
+            };
+            
+            const maturityContext = {
+                'pre-seed': 'As a pre-seed company, prioritize quick wins and proof-of-concept customers. Avoid long enterprise sales cycles.',
+                'seed': 'As a seed-stage startup, focus on early adopters and design partners. Build case studies while generating revenue.',
+                'early': 'As an early-stage company, balance between building pipeline and closing deals. Can start pursuing larger accounts.',
+                'growth': 'As a growth-stage company, focus on repeatability and scaling what works. Pursue ideal customer profile aggressively.',
+                'established': 'As an established company, leverage brand recognition and case studies. Can pursue competitive displacements.',
+                'enterprise': 'As an enterprise company, focus on strategic accounts and enterprise-level relationships. Long sales cycles expected.'
+            };
+            
+            return `${budgetRanges[budget] || 'Optimize for budget constraints.'}\n\nMATURITY CONTEXT: ${maturityContext[maturity] || ''}`;
+        }
+        
+        function getContactTargetingGuidance(maturity, budget) {
+            const guidance = {
+                'pre-seed': 'Target hands-on operators (Managers, Directors) who can make quick decisions. Avoid C-suite at large companies - they won\'t respond to unknown startups.',
+                'seed': 'Focus on Sr. Managers and Directors at small-to-mid companies. Early adopter types who can champion new solutions internally.',
+                'early': 'Mix of Directors and VPs. Can target VPs at mid-market or Directors/Managers at enterprise. Build relationships at multiple levels.',
+                'growth': 'VP-level and above. Focus on decision-makers with budget authority. Can pursue C-suite at mid-market companies.',
+                'established': 'VP and C-suite. Leverage brand recognition. Target strategic decision-makers who evaluate best-in-class solutions.',
+                'enterprise': 'C-suite focus. Strategic relationships. Long-term partnership discussions rather than transactional sales.'
+            };
+            
+            return guidance[maturity] || 'Target appropriate seniority level for your company stage.';
+        }
+        
+        function getEmailToneGuidance(maturity) {
+            const tones = {
+                'pre-seed': 'HUMBLE & HELPFUL: Position as a partner solving a problem together. Emphasize agility, customization, and founder involvement. Avoid corporate jargon.',
+                'seed': 'SCRAPPY & RESOURCEFUL: Show hustle and dedication. Reference other early customers. Emphasize speed of implementation and direct founder access.',
+                'early': 'PROVEN & GROWING: Balance startup energy with early traction. Reference case studies and growth metrics. Professional but personable.',
+                'growth': 'CREDIBLE & SCALABLE: Emphasize repeatability, case studies, and proven ROI. More polished and professional tone.',
+                'established': 'AUTHORITATIVE & TRUSTED: Leverage brand recognition and extensive case studies. Confident, consultative approach.',
+                'enterprise': 'STRATEGIC & CONSULTATIVE: Focus on long-term partnerships and strategic value. Executive-level communication style.'
+            };
+            
+            return tones[maturity] || 'Adapt tone to your company stage.';
+        }
+        
+        function getCaseStudyGuidance(maturity) {
+            const guidance = {
+                'pre-seed': 'Since you may not have formal case studies yet, use: (1) Founder story/problem validation, (2) Beta customer testimonials, (3) Before/after comparisons from pilot users.',
+                'seed': 'Share early wins from your first 5-10 customers. Focus on quick time-to-value and specific metrics (even if small scale). Design partner success stories.',
+                'early': 'Use 1-2 best customer stories with real metrics. Show repeatability across a few different use cases or customer types.',
+                'growth': 'Reference multiple case studies segmented by industry or use case. Show scalability and consistent results across customer base.',
+                'established': 'Leverage extensive library of case studies. Choose most relevant to prospect\'s industry/size. Include analyst reports, awards, customer logos.',
+                'enterprise': 'Strategic transformation stories. Multi-year partnerships. Enterprise-scale metrics. Reference analyst firms (Gartner, Forrester) and thought leadership.'
+            };
+            
+            return guidance[maturity] || 'Share relevant customer success stories.';
+        }
+        
+        function getBreakupToneGuidance(maturity) {
+            const tones = {
+                'pre-seed': 'FRIENDLY & PERSONAL: "I know you\'re busy. If timing isn\'t right, totally understand. Happy to reconnect when [trigger event]." Founder can even say "feel free to text me directly if something changes."',
+                'seed': 'UNDERSTANDING & OPEN: "Respect your time. If this isn\'t a priority now, no worries. Here\'s my direct email/calendar link if anything changes."',
+                'early': 'PROFESSIONAL & HELPFUL: "Understand if timing isn\'t right. Left some resources that might help. Feel free to reach out when [specific trigger]."',
+                'growth': 'POLISHED & PERSISTENT: "Haven\'t heard back - figured I\'d check one last time. If not a fit, happy to connect you with [alternative resource]."',
+                'established': 'CONSULTATIVE & GRACEFUL: "Seems like timing isn\'t right. Happy to stay connected via [LinkedIn/newsletter]. Let me know if circumstances change."',
+                'enterprise': 'STRATEGIC & PATIENT: "Understand priorities shift. Would love to stay connected for future discussions. Here\'s [valuable resource] in the meantime."'
+            };
+            
+            return tones[maturity] || 'Professional closing message.';
+        }
+        
+        // Utility Functions
+        function resetApp() {
+            if (confirm('Are you sure? This will delete all data and start over.')) {
+                localStorage.removeItem(DB_KEY);
+                location.reload();
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const db = getDB();
+            goToStage(db.stage || 1);
+            
+            // Add stage button click handlers
+            document.querySelectorAll('.stage-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const stage = parseInt(btn.dataset.stage);
+                    const db = getDB();
+                    
+                    // Only allow navigation to completed stages
+                    if (stage <= db.stage || btn.classList.contains('completed')) {
+                        goToStage(stage);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
