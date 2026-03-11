@@ -100,7 +100,7 @@ body { overflow: hidden; }
       <div>
         <label class="block text-sm font-medium text-gray-300 mb-1.5">AI Provider</label>
         <select id="ai-provider" class="w-full bg-surface-900 border border-gray-600 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none">
-          <option value="gemini">Google Gemini (1.5 Flash)</option>
+          <option value="gemini">Google Gemini (2.5 Flash)</option>
           <option value="anthropic">Anthropic Claude (3.5 Sonnet)</option>
         </select>
       </div>
@@ -233,7 +233,7 @@ async function callAI(systemPrompt, userPrompt) {
   if (!state.apiKey) { showToast('Please set your API key first', true); openSettings(); throw new Error('No API key'); }
 
   if (state.apiProvider === 'gemini') {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${state.apiKey}`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.apiKey}`;
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
